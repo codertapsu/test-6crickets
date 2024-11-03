@@ -1,0 +1,8 @@
+<div class="timer-container">
+  <canvas
+    #canvas
+    [width]="size + runnerSize * 2"
+    [height]="size + runnerSize * 2"
+  ></canvas>
+  <div class="centered-text">{{ $remainingMinutes() }} mins</div>
+</div>

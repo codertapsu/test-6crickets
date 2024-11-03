@@ -1,0 +1,14 @@
+<section>
+  <h1>Deadline</h1>
+</section>
+<section *ngIf="secondsLeft$ | async as secondsLeft">
+  <div>Seconds left to deadline:</div>
+  <div>
+    <ui-tiny-countdown [totalSeconds]="secondsLeft" />
+  </div>
+  <br />
+  <p>OR</p>
+  <div>
+    <ui-countdown-timer [seconds]="secondsLeft" />
+  </div>
+</section>

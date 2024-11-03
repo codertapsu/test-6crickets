@@ -1,0 +1,21 @@
+@import "../styles.scss";
+
+:host {
+  display: block;
+}
+
+.timer-container {
+  position: relative;
+}
+
+.centered-text {
+  position: absolute;
+  z-index: 0;
+  font: inherit;
+  color: inherit;
+}
+
+canvas {
+  position: relative;
+  z-index: 1;
+}

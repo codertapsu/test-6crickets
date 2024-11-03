@@ -1,0 +1,121 @@
+<section>
+  <h1>Countdown preview</h1>
+  <div class="d-flex">
+    <label class="form-field">
+      <span>Tiny countdown</span>
+      <input
+        type="radio"
+        name="countdown-type"
+        [(ngModel)]="$timerType"
+        value="tiny"
+      />
+    </label>
+    <label class="form-field">
+      <span>Countdown</span>
+      <input
+        type="radio"
+        name="countdown-type"
+        [(ngModel)]="$timerType"
+        value="countdown"
+      />
+    </label>
+    <label class="form-field">
+      <span>Stopwatch</span>
+      <input
+        type="radio"
+        name="countdown-type"
+        [(ngModel)]="$timerType"
+        value="stopwatch"
+      />
+    </label>
+  </div>
+</section>
+<section>
+  @switch ($timerType()) {
+    @case ('tiny') {
+      <ui-tiny-countdown
+        [totalSeconds]="timerForm.get('seconds')!.value!"
+        [size]="timerForm.get('size')!.value!"
+        [strokeWidth]="timerForm.get('strokeWidth')!.value!"
+        (timerEnd)="onTimerEnd()"
+      />
+    }
+    @case ('countdown') {
+      <ui-countdown-timer
+        [minutes]="timerForm.get('minutes')!.value!"
+        [seconds]="timerForm.get('seconds')!.value!"
+        [size]="timerForm.get('size')!.value!"
+        [runnerSize]="timerForm.get('runnerSize')!.value!"
+        [strokeWidth]="timerForm.get('strokeWidth')!.value!"
+        [durationOfFullCycle]="timerForm.get('durationOfFullCycle')!.value!"
+        (timerEnd)="onTimerEnd()"
+      />
+    }
+    @case ('stopwatch') {
+      <ui-stop-watch
+        [minutes]="timerForm.get('minutes')!.value!"
+        [seconds]="timerForm.get('seconds')!.value!"
+        (timerEnd)="onTimerEnd()"
+      />
+    }
+  }
+</section>
+
+<section>
+  <form
+    novalidate
+    class="timer-form"
+    [formGroup]="timerForm"
+  >
+    <label class="form-field">
+      <span>Minutes:</span>
+      <input
+        type="number"
+        formControlName="minutes"
+      />
+    </label>
+    <label class="form-field">
+      <span>Seconds:</span>
+      <input
+        type="number"
+        formControlName="seconds"
+      />
+    </label>
+    <label class="form-field">
+      <span>Circle Size:</span>
+      <input
+        type="number"
+        formControlName="size"
+      />
+    </label>
+    <label class="form-field">
+      <span>Runner Size:</span>
+      <input
+        type="number"
+        formControlName="runnerSize"
+      />
+    </label>
+    <label class="form-field">
+      <span>Stroke Width:</span>
+      <input
+        type="number"
+        formControlName="strokeWidth"
+      />
+    </label>
+    <label class="form-field">
+      <span>Duration of Full Cycle:</span>
+      <input
+        type="number"
+        formControlName="durationOfFullCycle"
+      />
+    </label>
+    <div>
+      <button
+        type="submit"
+        class="form-button"
+      >
+        Start Timer
+      </button>
+    </div>
+  </form>
+</section>
