@@ -1,0 +1,133 @@
+<section *ngIf="form">
+  <h1>Check coverage sufficiency</h1>
+  <div>coverage sufficiency: {{ $isCoverageSufficient() }}</div>
+  <div>
+    <form
+      class="form-container"
+      [formGroup]="form"
+    >
+      <div formGroupName="desiredDistanceRange">
+        <div>Desired distance range:</div>
+        <div class="form-row">
+          <label class="form-field">
+            <span>min:</span>
+            <input
+              type="number"
+              formControlName="min"
+            />
+          </label>
+          <label class="form-field">
+            <span>max:</span>
+            <input
+              type="number"
+              formControlName="max"
+            />
+          </label>
+        </div>
+      </div>
+      <div formGroupName="desiredDistanceRange">
+        <div>Desired light level range:</div>
+        <div class="form-row">
+          <label class="form-field">
+            <span>min:</span>
+            <input
+              type="number"
+              formControlName="min"
+            />
+          </label>
+          <label class="form-field">
+            <span>max:</span>
+            <input
+              type="number"
+              formControlName="max"
+            />
+          </label>
+        </div>
+      </div>
+      <div>Hardware cameras:</div>
+      <ng-container formArrayName="cameras">
+        <ng-container *ngFor="let cameraGroup of camerasFormArray.controls; index as cameraIndex">
+          <ng-container [formGroupName]="cameraIndex">
+            <div>Camera {{ cameraIndex + 1 }}:</div>
+            <div formGroupName="distanceRange">
+              <div>Distance range:</div>
+              <div class="form-row">
+                <label class="form-field">
+                  <span>min:</span>
+                  <input
+                    type="number"
+                    formControlName="min"
+                  />
+                </label>
+                <label class="form-field">
+                  <span>max:</span>
+                  <input
+                    type="number"
+                    formControlName="max"
+                  />
+                </label>
+              </div>
+            </div>
+            <div formGroupName="lightLevelRange">
+              <div>Light level range:</div>
+              <div class="form-row">
+                <label class="form-field">
+                  <span>min:</span>
+                  <input
+                    type="number"
+                    formControlName="min"
+                  />
+                </label>
+                <label class="form-field">
+                  <span>max:</span>
+                  <input
+                    type="number"
+                    formControlName="max"
+                  />
+                </label>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <div>
+        <button
+          type="button"
+          class="form-button"
+          (click)="addCamera()"
+        >
+          Add hardware camera
+        </button>
+      </div>
+      <hr />
+      <div>
+        <button
+          type="button"
+          class="form-button"
+          (click)="checkCoverageSufficient()"
+        >
+          Check
+        </button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <h2>Example of coverage sufficiency check:</h2>
+    <div>
+      <button
+        type="button"
+        class="form-button"
+        (click)="loadFullCoverage()"
+      >
+        Test full coverage
+      </button>
+      <button
+        type="button"
+        class="form-button"
+        (click)="loadInsufficientCoverage()"
+      >
+        Test insufficient coverage
+      </button>
+    </div>
+  </div>
+</section>

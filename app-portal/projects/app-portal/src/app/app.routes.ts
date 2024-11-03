@@ -15,4 +15,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./modules/countdown-preview/countdown-preview.component').then(m => m.CountdownPreviewComponent),
   },
+  {
+    path: 'camera',
+    loadComponent: () => import('./modules/camera/camera.component').then(m => m.CameraComponent),
+  },
 ];
